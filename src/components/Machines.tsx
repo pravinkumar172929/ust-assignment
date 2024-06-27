@@ -1,14 +1,13 @@
 import React from "react";
 import Box from "@mui/material/Box";
+import { Machine } from "../types";
+import { machineStateToColorMap } from "../utils";
 
-const Machines = ({ machinesData }) => {
-  const machineStateColorMap = {
-    ACCEPTABLE: "#1976d2",
-    MONITOR: "#2e7d32",
-    ALARM: "#ed6c02",
-    DANGER: "#d32f2f",
-  };
+interface MachinesProps {
+  machinesData: Machine[];
+}
 
+const Machines: React.FC<MachinesProps> = ({ machinesData }) => {
   return (
     <>
       {machinesData.map((machine) => (
@@ -23,7 +22,7 @@ const Machines = ({ machinesData }) => {
           p={2}
           sx={{
             border: `2px solid ${
-              machineStateColorMap[machine.state] || "black"
+              machineStateToColorMap[machine.state] || "black"
             }`,
           }}
         >
